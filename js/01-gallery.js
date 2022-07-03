@@ -8,7 +8,7 @@ const container = document.querySelector(".gallery");
 
 
 function createGalleryList (items) {
- 
+
  return items.map( item  => 
      `<div class="gallery__item">
      <a class="gallery__link" href="large-image.jpg">
@@ -24,20 +24,11 @@ function createGalleryList (items) {
 
 }
 
-// document.addEventListener("keydown", (event) => { if (
-//   event.code === 'Escape') {console.log (event.code)}})
-
 container.insertAdjacentHTML("afterbegin", createGalleryList(galleryItems) )
-const link= document.querySelectorAll(".gallery__link");
+const link = document.querySelectorAll(".gallery__link");
 
 link.forEach(link => addEventListener("click", (event) => {
 event.preventDefault();}))
-  
-const keyClose = ( event => { 
-  if (event.code === 'Escape') {
-    console.log (event.code);
-    instance.close();
-}})
 
 container.addEventListener("click", selectImage)
 
