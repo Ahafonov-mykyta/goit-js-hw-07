@@ -21,13 +21,6 @@ let lightbox = new SimpleLightbox(".gallery a", {
     captionsData: 'alt',
     captionDelay: 250,
   });
-container.addEventListener("click", selectImage)
 
 
-function selectImage (event) {
-  
-  if (event.target.nodeName !== "IMG" ){
-    return;
-  }
 
-}
