@@ -25,33 +25,31 @@ function createGalleryList (items) {
 }
 
 container.insertAdjacentHTML("afterbegin", createGalleryList(galleryItems) )
-const link = document.querySelectorAll(".gallery__link");
-
-link.forEach(link => addEventListener("click", (event) => {
-event.preventDefault();}))
-
 container.addEventListener("click", selectImage)
 
 
 function selectImage (event) {
-  
+  event.preventDefault()
   if (event.target.nodeName !== "IMG" ){
     return;
   }
 
+  const keyClose = ( event => { 
+    if (event.code === 'Escape') {
+      instance.close()
+  }})
+
+
   const atr = event.target.getAttribute("data-source")
   const instance = basicLightbox.create(`
 		<img  src=${atr}>
-  	`)
+  	`, {
+      onShow: (instance) => { document.addEventListener("keydown", keyClose)},
+      onClose: (instance) => {document.removeEventListener("keydown", keyClose)}
+    })
 
-    instance.show()
+    instance.show();
+  }
 
-    const keyClose = ( event => { 
-      if (event.code === 'Escape') {
-        instance.close()
-        document.removeEventListener("keydown", keyClose);;
-    }})
-    document.addEventListener("keydown", keyClose);
-}
 
 
